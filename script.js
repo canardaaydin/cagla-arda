@@ -236,6 +236,8 @@ document.addEventListener("keydown", (e) => {
   if (!form) return;
   const note = $("#formNote");
   const afterField = $("#afterPartyField");
+  const checkEl = $("#r-check");
+  if (checkEl) checkEl.value = "ok-" + new Date().getFullYear();
 
   // If the guest says they can't make it to the wedding, hide the after-party
   // question entirely (it doesn't make sense to ask).

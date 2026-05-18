@@ -8,6 +8,13 @@ const NOTIFY_EMAIL = ''; // optional — set to your email to get notified on ea
 
 function doPost(e) {
   try {
+    const p = e.parameter || {};
+
+    // Spam filter: honeypot field must be empty + JS-set token must look right.
+    // Silently return ok so bots don't retry.
+    if (p.website) return jsonOk();
+    if (!p.check || !/^ok-\d{4}$/.test(p.check)) return jsonOk();
+
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     let sheet = ss.getSheetByName(SHEET_NAME);
     if (!sheet) {
@@ -18,8 +25,6 @@ function doPost(e) {
       ]);
       sheet.setFrozenRows(1);
     }
-
-    const p = e.parameter || {};
     const extra = Object.keys(p)
       .filter(k => /^guest\d+$/.test(k))
       .sort()
@@ -58,4 +63,10 @@ function doPost(e) {
 
 function doGet() {
   return ContentService.createTextOutput('RSVP endpoint OK');
+}
+
+function jsonOk() {
+  return ContentService
+    .createTextOutput(JSON.stringify({ ok: true }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
