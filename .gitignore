@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+package-lock.json
+package.json
+
+# Local scratch / playwright captures
+_*.js
+*.tmp.png
+
+# OS
+Thumbs.db

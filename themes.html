@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tema Önizleme — Çağla &amp; Can Arda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg: #efece5;
+    --ink: #1f3a44;
+    --soft: #4f6b73;
+    --rule: #d8c9a8;
+    --paper: #ffffff;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    padding: 32px clamp(20px, 4vw, 56px) 96px;
+  }
+  header.page{
+    max-width: 1200px; margin: 0 auto 32px;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  h1{
+    margin: 0 0 6px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic; font-weight: 500;
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 1.05;
+  }
+  h1 .script{ font-family: "Dancing Script", cursive; font-style: normal; color: #6E7F5C; }
+  p.lede{ margin: 0; max-width: 620px; color: var(--soft); font-size: 16px; }
+  .back{
+    padding: 10px 18px; border-radius: 999px;
+    background: var(--ink); color: #fff; text-decoration: none;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .grid{
+    max-width: 1280px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+  @media (max-width: 760px){ .grid{ grid-template-columns: 1fr; gap: 22px; } }
+
+  .card{
+    background: var(--paper);
+    border: 1px solid #d8c9a8;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(31,58,68,0.10);
+    display: flex; flex-direction: column;
+  }
+  .swatches{
+    display: flex; height: 8px; width: 100%;
+  }
+  .swatches span{ flex: 1; display: block; }
+
+  .frame{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #1c1a16;
+    border-bottom: 1px solid #ecdfc2;
+  }
+  /* Render the iframe at a wider logical viewport, then scale down so the
+     desktop layout is what we see in the card. */
+  .frame iframe{
+    position: absolute; top: 0; left: 0;
+    width: 1440px;
+    height: 900px;
+    transform-origin: top left;
+    border: 0;
+    pointer-events: none;
+  }
+
+  .body{
+    padding: 20px 22px 22px;
+    display: grid; gap: 12px;
+  }
+  .title{
+    display: flex; align-items: baseline; gap: 12px;
+    margin: 0;
+  }
+  .name{
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic; font-weight: 500;
+    font-size: 26px; line-height: 1;
+  }
+  .tag{ font-size: 12px; letter-spacing: 2px; color: var(--soft); text-transform: uppercase; }
+  .desc{ margin: 0; color: var(--soft); font-size: 14px; line-height: 1.55; }
+  .palette{
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;
+    margin: 4px 0 4px;
+  }
+  .palette span{
+    aspect-ratio: 1/1; border-radius: 4px;
+    border: 1px solid rgba(31,58,68,0.06);
+    box-shadow: 0 1px 0 rgba(31,58,68,0.06);
+  }
+  .row{
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  .btn{
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 12px 22px; border-radius: 999px;
+    font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase;
+    border: 1px solid currentColor;
+    cursor: pointer;
+    background: transparent;
+    transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    text-decoration: none;
+  }
+  .btn.primary{ background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn.primary:hover{ transform: translateY(-1px); }
+  .btn.ghost{ color: var(--ink); }
+  .btn.ghost:hover{ background: var(--ink); color: #fff; }
+
+  .note{ font-size: 12px; color: var(--soft); }
+  .note.ok{ color: #2E7A56; }
+
+  .variants-section{
+    max-width: 1280px;
+    margin: 56px auto 0;
+  }
+  .variants-head{
+    display: flex; flex-direction: column; gap: 4px;
+    margin: 0 0 22px;
+    padding: 22px 0 0;
+    border-top: 1px solid #d8c9a8;
+  }
+  .variants-head h2{
+    margin: 0;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic; font-weight: 500;
+    font-size: clamp(24px, 2.6vw, 34px);
+    color: var(--ink);
+  }
+  .variants-head p{
+    margin: 0;
+    color: var(--soft);
+    font-size: 15px;
+    max-width: 620px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <div>
+    <h1>Tema <span class="script">Önizleme</span></h1>
+    <p class="lede">Pinterest'ten seçtiğin dört paletten oluşturulmuş alternatifler. Beğendiğin temayı seç — sitedeki tüm sayfalara uygulanacak.</p>
+  </div>
+  <a class="back" href="index.html">← Davetiye</a>
+</header>
+
+<main class="grid">
+
+  <!-- Sea Foam — new default -->
+  <article class="card" data-theme="coastal-soft">
+    <div class="swatches">
+      <span style="background:#F1EFEA"></span>
+      <span style="background:#3F586E"></span>
+      <span style="background:#7AA0B5"></span>
+      <span style="background:#C9D4DD"></span>
+      <span style="background:#B5C8D5"></span>
+    </div>
+    <div class="frame"><iframe loading="lazy" src="index.html"></iframe></div>
+    <div class="body">
+      <div class="title"><span class="name">Deniz Köpüğü</span><span class="tag">Soft Teal · Steel · Near-white · Şu anki</span></div>
+      <p class="desc">Yumuşak teal vurgu, beyaza yakın kağıt, soluk gök çizgiler. Sabah esintisi, hafif ve havadar.</p>
+      <div class="palette">
+        <span style="background:#F1EFEA"></span><span style="background:#3F586E"></span><span style="background:#7AA0B5"></span><span style="background:#C9D4DD"></span><span style="background:#B5C8D5"></span>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-apply="">Bu Temayı Kullan</button>
+        <a class="btn ghost" href="index.html" target="_blank">Tam Sayfa Aç ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Coastal — previous default -->
+  <article class="card" data-theme="coastal">
+    <div class="swatches">
+      <span style="background:#F5EFEB"></span>
+      <span style="background:#2F4156"></span>
+      <span style="background:#567C8D"></span>
+      <span style="background:#C8D9E6"></span>
+      <span style="background:#FFFFFF"></span>
+    </div>
+    <div class="frame"><iframe loading="lazy" src="index.html?theme=coastal"></iframe></div>
+    <div class="body">
+      <div class="title"><span class="name">Coastal</span><span class="tag">Navy · Teal · Sky · Beige</span></div>
+      <p class="desc">Lacivert ve teal ile derinlik, soluk gök mavisi ve bej ile hafiflik. Klasik, deniz hissi.</p>
+      <div class="palette">
+        <span style="background:#F5EFEB"></span><span style="background:#2F4156"></span><span style="background:#567C8D"></span><span style="background:#C8D9E6"></span><span style="background:#FFFFFF"></span>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-apply="coastal">Bu Temayı Kullan</button>
+        <a class="btn ghost" href="index.html?theme=coastal" target="_blank">Tam Sayfa Aç ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Olive (old default, now optional) -->
+  <article class="card" data-theme="olive">
+    <div class="swatches">
+      <span style="background:#F5EFE3"></span>
+      <span style="background:#1F3A44"></span>
+      <span style="background:#6E7F5C"></span>
+      <span style="background:#B8965B"></span>
+      <span style="background:#D8C9A8"></span>
+    </div>
+    <div class="frame"><iframe loading="lazy" src="index.html?theme=olive"></iframe></div>
+    <div class="body">
+      <div class="title"><span class="name">Olive</span><span class="tag">Mediterranean Sage</span></div>
+      <p class="desc">Krem kağıt zemin, derin teal-mürekkep, yumuşak zeytin yeşili vurgu. Sıcak ve sakin; önceki tema.</p>
+      <div class="palette">
+        <span style="background:#F5EFE3"></span><span style="background:#1F3A44"></span><span style="background:#6E7F5C"></span><span style="background:#B8965B"></span><span style="background:#D8C9A8"></span>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-apply="olive">Bu Temayı Kullan</button>
+        <a class="btn ghost" href="index.html?theme=olive" target="_blank">Tam Sayfa Aç ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Sand -->
+  <article class="card" data-theme="sand">
+    <div class="swatches">
+      <span style="background:#DBD5D2"></span>
+      <span style="background:#3F4A47"></span>
+      <span style="background:#6E7C78"></span>
+      <span style="background:#D6C7BD"></span>
+      <span style="background:#C6CFCF"></span>
+    </div>
+    <div class="frame"><iframe loading="lazy" src="index.html?theme=sand"></iframe></div>
+    <div class="body">
+      <div class="title"><span class="name">Soft Sand</span><span class="tag">Sage Stone · Warm Taupe</span></div>
+      <p class="desc">Sessiz, tozlu paletteki kum/taş tonları. Minimal ve modern; sahil hissi sakin renklerle.</p>
+      <div class="palette">
+        <span style="background:#DBD5D2"></span><span style="background:#3F4A47"></span><span style="background:#6E7C78"></span><span style="background:#D6C7BD"></span><span style="background:#C6CFCF"></span>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-apply="sand">Bu Temayı Kullan</button>
+        <a class="btn ghost" href="index.html?theme=sand" target="_blank">Tam Sayfa Aç ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Reveal -->
+  <article class="card" data-theme="reveal">
+    <div class="swatches">
+      <span style="background:#F4ECDB"></span>
+      <span style="background:#1F4A4D"></span>
+      <span style="background:#2E6E72"></span>
+      <span style="background:#C9A672"></span>
+      <span style="background:#B3DBD3"></span>
+    </div>
+    <div class="frame"><iframe loading="lazy" src="index.html?theme=reveal"></iframe></div>
+    <div class="body">
+      <div class="title"><span class="name">Aegean</span><span class="tag">Teal · Pearl · Sand · Aqua</span></div>
+      <p class="desc">İnci kağıt zemin, derin teal mürekkep, altın kum aksanları. Sıcak ve denizci.</p>
+      <div class="palette">
+        <span style="background:#F4ECDB"></span><span style="background:#1F4A4D"></span><span style="background:#2E6E72"></span><span style="background:#C9A672"></span><span style="background:#B3DBD3"></span>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-apply="reveal">Bu Temayı Kullan</button>
+        <a class="btn ghost" href="index.html?theme=reveal" target="_blank">Tam Sayfa Aç ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Citrus -->
+  <article class="card" data-theme="citrus">
+    <div class="swatches">
+      <span style="background:#FBF7EE"></span>
+      <span style="background:#3D1B2A"></span>
+      <span style="background:#B81A4D"></span>
+      <span style="background:#F0A934"></span>
+      <span style="background:#A9B53D"></span>
+    </div>
+    <div class="frame"><iframe loading="lazy" src="index.html?theme=citrus"></iframe></div>
+    <div class="body">
+      <div class="title"><span class="name">Citrus &amp; Berry</span><span class="tag">Cream · Raspberry · Lemon</span></div>
+      <p class="desc">Krem & vanilya zemin, raspberry vurgu, lime ve limon ile canlı detaylar. Eğlenceli ve cesur.</p>
+      <div class="palette">
+        <span style="background:#FBF7EE"></span><span style="background:#3D1B2A"></span><span style="background:#B81A4D"></span><span style="background:#F0A934"></span><span style="background:#A9B53D"></span>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-apply="citrus">Bu Temayı Kullan</button>
+        <a class="btn ghost" href="index.html?theme=citrus" target="_blank">Tam Sayfa Aç ↗</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<!-- ============ Citrus variants ============ -->
+<section class="variants-section">
+  <header class="variants-head">
+    <h2>Citrus &amp; Berry · varyasyonlar</h2>
+    <p>Aynı palet ailesinden dört farklı yön. Daha sarı, daha pembe, daha yeşil, ya da renklerin tamamı.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- Lemon -->
+    <article class="card" data-theme="lemon">
+      <div class="swatches">
+        <span style="background:#FEF6DA"></span>
+        <span style="background:#2E1F0A"></span>
+        <span style="background:#B86A0A"></span>
+        <span style="background:#F0A934"></span>
+        <span style="background:#F0D286"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=lemon"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Limonata</span><span class="tag">Sun · Amber · Cream</span></div>
+        <p class="desc">Limonata sarısı krem zemin, derin amber vurgu. Güneşli ve neşeli; yaz akşamı hissi.</p>
+        <div class="palette">
+          <span style="background:#FEF6DA"></span><span style="background:#2E1F0A"></span><span style="background:#B86A0A"></span><span style="background:#F0A934"></span><span style="background:#F0D286"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="lemon">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=lemon" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Grapefruit -->
+    <article class="card" data-theme="grapefruit">
+      <div class="swatches">
+        <span style="background:#FFF1E8"></span>
+        <span style="background:#4A1A2D"></span>
+        <span style="background:#A04266"></span>
+        <span style="background:#F0A934"></span>
+        <span style="background:#F0BFB5"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=grapefruit"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Greyfurt</span><span class="tag">Peach · Rose · Lemon</span></div>
+        <p class="desc">Şeftali kreması zemin, gül-pembe greyfurt vurgu. Romantik ve yumuşak; bahar bahçesi.</p>
+        <div class="palette">
+          <span style="background:#FFF1E8"></span><span style="background:#4A1A2D"></span><span style="background:#A04266"></span><span style="background:#F0A934"></span><span style="background:#F0BFB5"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="grapefruit">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=grapefruit" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Lime -->
+    <article class="card" data-theme="lime">
+      <div class="swatches">
+        <span style="background:#FAF6E0"></span>
+        <span style="background:#2C3614"></span>
+        <span style="background:#5C6E1A"></span>
+        <span style="background:#F0A934"></span>
+        <span style="background:#C8D182"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=lime"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Lime Spritz</span><span class="tag">Lime · Lemon · Olive Ink</span></div>
+        <p class="desc">Limon kreması zemin, koyu lime vurgu, limonla altın detaylar. Bahçe partisi.</p>
+        <div class="palette">
+          <span style="background:#FAF6E0"></span><span style="background:#2C3614"></span><span style="background:#5C6E1A"></span><span style="background:#F0A934"></span><span style="background:#C8D182"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="lime">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=lime" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Pop Mix -->
+    <article class="card" data-theme="pop">
+      <div class="swatches">
+        <span style="background:#FBF1DA"></span>
+        <span style="background:#3D1B2A"></span>
+        <span style="background:#C8163F"></span>
+        <span style="background:#F0A934"></span>
+        <span style="background:#A9B53D"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=pop"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Pop Mix</span><span class="tag">Vanilla · Raspberry · Lime · Lemon</span></div>
+        <p class="desc">Vanilya zemin üstüne raspberry vurgu, lime kuralları, limon altın. En renkli versiyon.</p>
+        <div class="palette">
+          <span style="background:#FBF1DA"></span><span style="background:#3D1B2A"></span><span style="background:#C8163F"></span><span style="background:#F0A934"></span><span style="background:#A9B53D"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="pop">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=pop" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ More inspirations ============ -->
+<section class="variants-section">
+  <header class="variants-head">
+    <h2>Yeni esinler</h2>
+    <p>Pinterest'ten son gelen dört palet — Palm Springs, pastel bahçe, Provence limon-zeytin ve sıcak teraküta.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- Palm Springs -->
+    <article class="card" data-theme="palmsprings">
+      <div class="swatches">
+        <span style="background:#F4ECDD"></span>
+        <span style="background:#2C1F1F"></span>
+        <span style="background:#C2306A"></span>
+        <span style="background:#6B8E6E"></span>
+        <span style="background:#F8E1D6"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=palmsprings"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Palm Springs</span><span class="tag">Hot Pink · Sage · Peach</span></div>
+        <p class="desc">Sıcak fuşya vurgu, adaçayı sage çizgiler, soluk şeftali zemin. Çöl letterpress hissi.</p>
+        <div class="palette">
+          <span style="background:#F4ECDD"></span><span style="background:#2C1F1F"></span><span style="background:#C2306A"></span><span style="background:#6B8E6E"></span><span style="background:#F8E1D6"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="palmsprings">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=palmsprings" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Pastel Garden -->
+    <article class="card" data-theme="pastel">
+      <div class="swatches">
+        <span style="background:#F7F0E4"></span>
+        <span style="background:#3D4A3A"></span>
+        <span style="background:#B07A82"></span>
+        <span style="background:#ADC0D0"></span>
+        <span style="background:#E0C76A"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=pastel"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Pastel Bahçe</span><span class="tag">Dusty Rose · Sage · Sky · Butter</span></div>
+        <p class="desc">Tozlu pembe vurgu, gök mavisi çizgiler, tereyağı sarı altın detaylar. Yumuşak bahar bahçesi.</p>
+        <div class="palette">
+          <span style="background:#F7F0E4"></span><span style="background:#3D4A3A"></span><span style="background:#B07A82"></span><span style="background:#ADC0D0"></span><span style="background:#E0C76A"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="pastel">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=pastel" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Provence -->
+    <article class="card" data-theme="provence">
+      <div class="swatches">
+        <span style="background:#F4EFE5"></span>
+        <span style="background:#1F2D55"></span>
+        <span style="background:#2C4FA1"></span>
+        <span style="background:#E5BE3F"></span>
+        <span style="background:#C8C188"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=provence"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Provence</span><span class="tag">Royal Blue · Lemon · Olive</span></div>
+        <p class="desc">Kraliyet mavisi mürekkep, limon sarısı altın, zeytin yeşili kurallar. Akdeniz menü hissi.</p>
+        <div class="palette">
+          <span style="background:#F4EFE5"></span><span style="background:#1F2D55"></span><span style="background:#2C4FA1"></span><span style="background:#E5BE3F"></span><span style="background:#C8C188"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="provence">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=provence" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Terracotta -->
+    <article class="card" data-theme="terracotta">
+      <div class="swatches">
+        <span style="background:#F0E6D2"></span>
+        <span style="background:#3D2418"></span>
+        <span style="background:#C9523E"></span>
+        <span style="background:#D8B375"></span>
+        <span style="background:#BE8C57"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=terracotta"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Terraküta</span><span class="tag">Coral · Tan · Ivory</span></div>
+        <p class="desc">Mercan vurgu, ten rengi kurallar, fildişi zemin. Güneşte solmuş letterpress sıcaklığı.</p>
+        <div class="palette">
+          <span style="background:#F0E6D2"></span><span style="background:#3D2418"></span><span style="background:#C9523E"></span><span style="background:#D8B375"></span><span style="background:#BE8C57"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="terracotta">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=terracotta" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ Coastal variations ============ -->
+<section class="variants-section">
+  <header class="variants-head">
+    <h2>Coastal · varyasyonlar</h2>
+    <p>Şu anki temadan dört farklı yön: daha derin, daha hafif, daha sıcak ya da daha bulutlu.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- Deep Sea -->
+    <article class="card" data-theme="coastal-deep">
+      <div class="swatches">
+        <span style="background:#EDE5DC"></span>
+        <span style="background:#14253A"></span>
+        <span style="background:#3A6275"></span>
+        <span style="background:#95B0C4"></span>
+        <span style="background:#88A0AE"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=coastal-deep"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Derin Mavi</span><span class="tag">Coastal · darker, dramatic</span></div>
+        <p class="desc">Daha koyu lacivert mürekkep, daha doygun teal vurgu. Akşam üstü deniz feneri.</p>
+        <div class="palette">
+          <span style="background:#EDE5DC"></span><span style="background:#14253A"></span><span style="background:#3A6275"></span><span style="background:#95B0C4"></span><span style="background:#88A0AE"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="coastal-deep">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=coastal-deep" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Sunset Coast -->
+    <article class="card" data-theme="coastal-warm">
+      <div class="swatches">
+        <span style="background:#F5EBE0"></span>
+        <span style="background:#2F4156"></span>
+        <span style="background:#C97864"></span>
+        <span style="background:#E5C5A6"></span>
+        <span style="background:#D8A77E"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=coastal-warm"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Gün Batımı</span><span class="tag">Coastal · navy + warm coral</span></div>
+        <p class="desc">Lacivert mürekkep, sıcak mercan vurgu, tatlı bej zemin. Sahildeki altın saat.</p>
+        <div class="palette">
+          <span style="background:#F5EBE0"></span><span style="background:#2F4156"></span><span style="background:#C97864"></span><span style="background:#E5C5A6"></span><span style="background:#D8A77E"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="coastal-warm">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=coastal-warm" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Storm -->
+    <article class="card" data-theme="coastal-storm">
+      <div class="swatches">
+        <span style="background:#E1E4E7"></span>
+        <span style="background:#283341"></span>
+        <span style="background:#4A6275"></span>
+        <span style="background:#B0BAC4"></span>
+        <span style="background:#8FA0AE"></span>
+      </div>
+      <div class="frame"><iframe loading="lazy" src="index.html?theme=coastal-storm"></iframe></div>
+      <div class="body">
+        <div class="title"><span class="name">Fırtına Sonrası</span><span class="tag">Coastal · moody slate</span></div>
+        <p class="desc">Soğuk gri-mavi tonlar, kül kağıt zemin. Yağmurdan sonra Boğaz manzarası.</p>
+        <div class="palette">
+          <span style="background:#E1E4E7"></span><span style="background:#283341"></span><span style="background:#4A6275"></span><span style="background:#B0BAC4"></span><span style="background:#8FA0AE"></span>
+        </div>
+        <div class="row">
+          <button class="btn primary" data-apply="coastal-storm">Bu Temayı Kullan</button>
+          <a class="btn ghost" href="index.html?theme=coastal-storm" target="_blank">Tam Sayfa Aç ↗</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<script>
+  // Scale each iframe so the 1440 viewport fits the card width
+  function fitIframes() {
+    document.querySelectorAll('.frame').forEach((box) => {
+      const ifr = box.querySelector('iframe');
+      if (!ifr) return;
+      const w = box.clientWidth;
+      const scale = w / 1440;
+      ifr.style.transform = 'scale(' + scale + ')';
+    });
+  }
+  window.addEventListener('load', fitIframes);
+  window.addEventListener('resize', fitIframes);
+  // Iframes may resize after load; rerun a few times early
+  setTimeout(fitIframes, 400);
+  setTimeout(fitIframes, 1500);
+
+  // "Bu Temayı Kullan"
+  document.querySelectorAll('button[data-apply]').forEach((b) => {
+    b.addEventListener('click', () => {
+      const t = b.getAttribute('data-apply') || '';
+      try {
+        if (t) localStorage.setItem('theme', t);
+        else   localStorage.removeItem('theme');
+      } catch (e) {}
+      const note = document.createElement('p');
+      note.className = 'note ok';
+      note.style.marginTop = '6px';
+      note.textContent = '✓ Tema uygulandı. Davetiyeyi açıyorum…';
+      b.closest('.row').after(note);
+      setTimeout(() => { location.href = 'index.html'; }, 700);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Foto Önizleme — Çağla &amp; Can Arda</title>
+<style>
+  :root{
+    --ink:#1F3A44; --soft:#4F6B73; --rule:#D8C9A8; --cream:#F5EFE3;
+    --accent:#6E7F5C; --hov:#58684A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Inter",Arial,sans-serif;padding:32px;}
+  h1{font-family:"Cormorant Garamond","Georgia",serif;font-style:italic;font-weight:500;font-size:38px;margin:0 0 8px}
+  p.lede{color:var(--soft);margin:0 0 22px;max-width:760px}
+  code{background:#fff;padding:1px 6px;border-radius:4px;border:1px solid #eadfc8;color:var(--accent);font-size:12px}
+  a{color:var(--accent)}
+  .slots{
+    background:#FBF6EB;border:1px solid var(--rule);border-radius:10px;
+    padding:18px 22px;margin:0 0 28px;max-width:920px;
+  }
+  .slots h2{margin:0 0 10px;font:600 12px/1 -apple-system;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+  .slots ol{margin:0;padding-left:18px}
+  .slots li{margin:6px 0}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:18px;
+  }
+  .card{
+    background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;
+    box-shadow:0 4px 16px rgba(31,58,68,0.08);
+    display:flex;flex-direction:column;
+  }
+  .card .img{
+    aspect-ratio:1/1;background:#ddd;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card img{width:100%;height:100%;object-fit:cover;display:block}
+  .card .name{
+    padding:10px 12px;border-top:1px solid #eadfc8;background:#FBF6EB;
+    font-family:"Menlo",ui-monospace,monospace;font-size:12px;color:var(--ink);
+    word-break:break-all;
+  }
+  .copy{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:6px;padding:6px 10px;border-radius:6px;
+    background:var(--accent);color:#fff;border:0;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  }
+  .copy:hover{background:var(--hov)}
+  .copy.ok{background:#2E7A56}
+  .pin{
+    position:fixed;top:18px;right:18px;
+    background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;
+    text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<a class="pin" href="index.html">← Davetiye</a>
+
+<h1>Foto Önizleme</h1>
+<p class="lede">Aşağıda <code>/image/</code> klasöründeki tüm fotoğraflar dosya adlarıyla birlikte listeleniyor. Bana hangi fotonun nereye gideceğini söylemek için aşağıdaki slot listesini kullan: her slotun yanına dosya adını yaz (örnek: <code>Hero = IMG_9347.JPG</code>). İstersen her kartın altındaki "AD KOPYALA" butonuyla dosya adını kopyalayabilirsin.</p>
+
+<div class="slots">
+  <h2>Slotlar</h2>
+  <ol>
+    <li><strong>Hero</strong> (büyük kapak) — şu an: <code>IMG_9347.JPG</code></li>
+    <li><strong>Hakkımızda</strong> (story) — şu an: <code>IMG_5023 2.jpg</code></li>
+    <li><strong>Plan / Kokteyl</strong> (Program section default + 19:30 etkinlik) — şu an: <code>IMG_2084.jpg</code></li>
+    <li><strong>Nikah Töreni</strong> (20:00 etkinlik) — şu an: <code>IMG_5023 2.jpg</code></li>
+    <li><strong>Yemek &amp; Eğlence</strong> (20:30 etkinlik) — şu an: <code>IMG_4042 2.jpg</code></li>
+    <li><strong>After Party</strong> (00:00 etkinlik) — şu an: <code>IMG_5426 2.jpg</code></li>
+    <li><strong>Mini Rehber</strong> (info section) — şu an: <code>IMG_1483.jpg</code></li>
+    <li><strong>Anılarımız → Polaroid 1</strong> — şu an: <code>IMG_9347.JPG</code></li>
+    <li><strong>Polaroid 2</strong> — şu an: <code>IMG_1483.jpg</code></li>
+    <li><strong>Polaroid 3</strong> — şu an: <code>IMG_5023 2.jpg</code></li>
+    <li><strong>Polaroid 4</strong> — şu an: <code>IMG_1012.jpg</code></li>
+    <li><strong>Polaroid 5</strong> — şu an: <code>IMG_4042 2.jpg</code></li>
+    <li><strong>Polaroid 6</strong> — şu an: <code>IMG_2084.jpg</code></li>
+    <li><strong>Polaroid 7</strong> — şu an: <code>IMG_4049 2.jpg</code></li>
+    <li><strong>Polaroid 8</strong> — şu an: <code>IMG_5426 2.jpg</code></li>
+    <li><strong>Polaroid 9</strong> — şu an: <code>IMG_6001 2.jpg</code></li>
+    <li><strong>Katılım Durumu</strong> (RSVP section bg) — şu an: <code>IMG_9351 2.JPG</code></li>
+    <li><strong>Footer</strong> — şu an: <code>IMG_5426 2.jpg</code></li>
+  </ol>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+  const FILES = [
+    "IMG_0151 2.jpg",
+    "IMG_1012.jpg",
+    "IMG_1013.jpg",
+    "IMG_1219.JPG",
+    "IMG_1483.jpg",
+    "IMG_1608.jpg",
+    "IMG_2084.jpg",
+    "IMG_3970.jpg",
+    "IMG_4042 2.jpg",
+    "IMG_4049 2.jpg",
+    "IMG_4050.jpg",
+    "IMG_4669.png",
+    "IMG_5023 2.jpg",
+    "IMG_5023.png",
+    "IMG_5426 2.jpg",
+    "IMG_6001 2.jpg",
+    "IMG_6190 2.jpg",
+    "IMG_9347.JPG",
+    "IMG_9351 2.JPG",
+    "WhatsApp Image 2026-05-18 at 21.32.07.jpeg",
+    "WhatsApp Image 2026-05-18 at 21.34.35.jpeg",
+    "WhatsApp Image 2026-05-18 at 21.35.48.jpeg",
+    "WhatsApp Image 2026-05-18 at 21.37.43.jpeg",
+    "WhatsApp Image 2026-05-18 at 21.44.39.jpeg",
+    "WhatsApp Image 2026-05-18 at 21.47.26.jpeg",
+    "ad3fc998-f5e5-421b-a619-2dbfa013f71c 2.JPG"
+  ];
+  const grid = document.getElementById('grid');
+  const enc = (s) => encodeURI(s).replace(/'/g,"%27");
+  FILES.forEach((f) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="img"><img src="image/${enc(f)}" loading="lazy" alt="${f}"/></div>
+      <div class="name">${f}
+        <div><button class="copy" type="button" data-name="${f}">Ad Kopyala</button></div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  grid.addEventListener('click', async (e) => {
+    const b = e.target.closest('.copy');
+    if (!b) return;
+    try {
+      await navigator.clipboard.writeText(b.dataset.name);
+      const t = b.textContent;
+      b.textContent = "✓ Kopyalandı";
+      b.classList.add('ok');
+      setTimeout(() => { b.textContent = t; b.classList.remove('ok'); }, 1200);
+    } catch (err) {
+      alert(b.dataset.name);
+    }
+  });
+</script>
+</body>
+</html>

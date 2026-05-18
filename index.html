@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Çağla &amp; Can Arda — 27 Haziran 2026</title>
+<meta name="description" content="Çağla &amp; Can Arda'nın düğün davetiyesi — 27 Haziran 2026, Uzunya Plajı, Sarıyer / İstanbul." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script>
+  // Theme bootstrap — runs before first paint to avoid flash.
+  // URL ?theme=… always applies; only the top-level page (not iframes)
+  // persists to localStorage so previews don't overwrite the saved choice.
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search).get("theme");
+      var inIframe = window.self !== window.top;
+      if (p !== null) {
+        document.documentElement.dataset.theme = p;
+        if (!inIframe) {
+          if (p) localStorage.setItem("theme", p);
+          else   localStorage.removeItem("theme");
+        }
+        return;
+      }
+      var s = localStorage.getItem("theme");
+      if (s) document.documentElement.dataset.theme = s;
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<!-- Floating menu pill -->
+<button id="menuBtn" class="menu-pill" type="button" aria-label="Menüyü aç" onclick="toggleMenu()">
+  <span class="bars"><i></i><i></i><i></i></span>
+  <span class="lbl">MENU</span>
+</button>
+
+<!-- Bottom ribbon -->
+<div class="ribbon" aria-hidden="false">
+  <span class="ribbon-date">27 Haziran 2026</span>
+  <span class="ribbon-dot">·</span>
+  <span class="ribbon-place">Uzunya Plajı</span>
+  <a class="ribbon-cta" href="#rsvpForm">Katılım Durumu</a>
+</div>
+
+<!-- Mobile drawer -->
+<nav id="drawer" class="drawer" hidden>
+  <button class="drawer-x" type="button" aria-label="Kapat" onclick="toggleMenu()">×</button>
+  <ul>
+    <li><a href="#s-hero"     onclick="toggleMenu()">Ana Sayfa</a></li>
+    <li><a href="#s-schedule" onclick="toggleMenu()">Program</a></li>
+    <li><a href="#s-info"     onclick="toggleMenu()">Bilgi</a></li>
+    <li><a href="#s-memories" onclick="toggleMenu()">Anılar</a></li>
+    <li><a href="#rsvpForm"     onclick="toggleMenu()">Katılım</a></li>
+  </ul>
+</nav>
+
+<!-- =====================================================
+     RAIL LAYOUT  — left scrolls, right is sticky media
+===================================================== -->
+<main class="rail">
+
+  <!-- ============== LEFT (scrolling content) ============== -->
+  <div class="rail-content">
+
+    <!-- HERO -->
+    <section class="scene scene-hero" id="s-hero" data-img="image/IMG_1219.JPG">
+      <img class="m-only" src="image/IMG_1219.JPG" alt="" loading="eager" />
+      <div class="scene-inner">
+        <p class="eyebrow">TARİHİ KAYDEDİN</p>
+        <h1 class="hero-name">
+          <span class="n1">Çağla</span>
+          <span class="amp" aria-hidden="true">&amp;</span>
+          <span class="n2">Can&nbsp;Arda</span>
+        </h1>
+        <p class="hero-tag">Bu mutlu günümüzde sizi aramızda görmek için sabırsızlanıyoruz.</p>
+
+        <dl class="kv">
+          <div><dt>Tarih</dt><dd>27 Haziran 2026 · Cumartesi</dd></div>
+          <div><dt>Saat</dt><dd>19:30'dan itibaren</dd></div>
+          <div><dt>Yer</dt><dd>Uzunya Plajı<br/>Demirciköy · Uzunya Mevkii<br/>Sarıyer / İstanbul</dd></div>
+        </dl>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#rsvpForm">Katılım Durumu</a>
+          <a class="btn btn-ghost" href="#s-schedule">Programı Gör</a>
+        </div>
+
+        <div class="countdown" id="countdown" aria-label="Düğüne kalan süre">
+          <p class="cd-lead"><span class="cd-leaf" aria-hidden="true">❦</span> Düğünümüze kalan</p>
+          <div class="cd-row">
+            <div class="cd-unit"><span class="cd-n" data-k="d">—</span><span class="cd-l">gün</span></div>
+            <span class="cd-dot" aria-hidden="true"></span>
+            <div class="cd-unit"><span class="cd-n" data-k="h">—</span><span class="cd-l">saat</span></div>
+            <span class="cd-dot" aria-hidden="true"></span>
+            <div class="cd-unit"><span class="cd-n" data-k="m">—</span><span class="cd-l">dk</span></div>
+            <span class="cd-dot" aria-hidden="true"></span>
+            <div class="cd-unit"><span class="cd-n" data-k="s">—</span><span class="cd-l">sn</span></div>
+          </div>
+        </div>
+
+        <button class="scroll-hint" type="button" onclick="document.getElementById('s-schedule').scrollIntoView({behavior:'smooth'})">
+          <span class="sh-line"></span>
+          <span class="sh-lbl">Kaydır</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCHEDULE: opening + sub-anchors per event -->
+    <section class="scene scene-tall" id="s-schedule" data-img="image/IMG_6190 2.jpg">
+      <img class="m-only" src="image/IMG_6190 2.jpg" alt="" loading="lazy" />
+      <div class="scene-inner">
+        <p class="eyebrow">PROGRAM</p>
+        <h2 class="h2 script">Plan</h2>
+        <p class="lede"><em>O akşam, beraber.</em></p>
+
+        <h3 class="day">CUMARTESİ · 27 HAZİRAN 2026</h3>
+        <div class="timeline">
+
+          <article class="ev anchor" data-img="image/IMG_6190 2.jpg">
+            <span class="dot"></span>
+            <div class="ev-time"><span>19:30</span><span class="t-arrow">→</span><span>20:00</span></div>
+            <h4 class="ev-title">Kokteyl <span class="emoji">🍸</span></h4>
+            <ul class="ev-meta">
+              <li><span class="ic">📍</span> Uzunya Plajı</li>
+              <li><span class="ic">👗</span> Şık &amp; Renkli</li>
+            </ul>
+            <p class="ev-desc">Sevdiklerimizle bir araya gelip, bu güzel güne müzik eşliğinde keyifli bir başlangıç yaparken; Çağla ve Can Arda'nın kokteyllerini yarıştırıyoruz.</p>
+            <div class="ev-actions">
+              <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Uzunya+Plaj%C4%B1+Demirci+Sar%C4%B1yer">Yol Tarifi</a>
+            </div>
+          </article>
+
+          <article class="ev anchor" data-img="image/IMG_6190 2.jpg">
+            <span class="dot"></span>
+            <div class="ev-time"><span>20:00</span><span class="t-arrow">→</span><span>20:30</span></div>
+            <h4 class="ev-title">Nikah Töreni <span class="emoji">💍</span></h4>
+            <ul class="ev-meta"><li><span class="ic">📍</span> Uzunya Plajı</li></ul>
+            <p class="ev-desc">Yeminlerimizi okuyacağız (aşkım benim, evet ezbere — kâğıda bakmak yok). Devamında yüzükler, imzalar ve bolca gülümseme.</p>
+          </article>
+
+          <article class="ev anchor" data-img="image/IMG_0151 2.jpg">
+            <span class="dot"></span>
+            <div class="ev-time"><span>20:30</span><span class="t-arrow">→</span><span>00:00</span></div>
+            <h4 class="ev-title">Yemek &amp; Eğlence <span class="emoji">🍽️</span></h4>
+            <ul class="ev-meta"><li><span class="ic">📍</span> Uzunya Plajı</li></ul>
+            <p class="ev-desc">Masalar dolacak, kadehler kalkacak, tabaklar hızlıca bitecek. Sonrasında pist açılıyor — bahanesi olanları da bekliyoruz.</p>
+          </article>
+        </div>
+
+        <h3 class="day">PAZAR · 28 HAZİRAN 2026</h3>
+        <div class="timeline">
+          <article class="ev anchor" data-img="image/IMG_0151 2.jpg">
+            <span class="dot"></span>
+            <div class="ev-time"><span>00:00</span><span class="t-arrow">→</span><span>…</span></div>
+            <h4 class="ev-title">After Party <span class="emoji">🪩</span></h4>
+            <ul class="ev-meta"><li><span class="ic">📍</span> Zekeriyaköy · Sarıyer · 5. Cd. No:6/1</li></ul>
+            <p class="ev-desc">Gecenin enerjisini biraz daha uzatıyor, eğlenceye kaldığımız yerden devam ediyoruz. 5. Cd. No:6/1 — kapıda görüşürüz.</p>
+            <div class="ev-actions">
+              <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Zekeriyak%C3%B6y%205.%20Cd.%20No%3A6%2F1%2034450%20Sar%C4%B1yer">Yol Tarifi</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="scene" id="s-info" data-img="image/WhatsApp Image 2026-05-18 at 21.34.35.jpeg">
+      <img class="m-only" src="image/WhatsApp Image 2026-05-18 at 21.34.35.jpeg" alt="" loading="lazy" />
+      <div class="scene-inner">
+        <p class="eyebrow">MİSAFİR REHBERİ</p>
+        <h2 class="h2">Mini <em>Rehber</em></h2>
+        <p class="lede small">Düğünden önce işinize yarayacak küçük bir kılavuz.</p>
+
+        <div class="mini-grid">
+          <div class="mini">
+            <span class="mini-ic">👗</span><h3>Şık &amp; Renkli</h3>
+            <p>Yaz akşamı, ayaklarımız kumda. Renklerden çekinmeyin — ferah, şık ve size yakışanı seçin. Yüksek topuk burada en büyük düşmanınız; sandalet ya da blok topuk yanınızda olsun.</p>
+          </div>
+          <div class="mini">
+            <span class="mini-ic">💞</span><h3>Sevdikleriniz</h3>
+            <p>Çocuklar, eşler, eş adayları, yıllardır dert ortağınız olan en yakın arkadaşınız — hepsi bizim de misafirimiz. Tek ricamız: RSVP'de isimleriyle birlikte yazın; sofrada herkese bir yer hazırlayalım.</p>
+          </div>
+          <div class="mini">
+            <span class="mini-ic">🚗</span><h3>Yol sizden olsun</h3>
+            <p>Mekana gelişi siz planlayın — taksi, özel araç ya da bir arkadaşla aynı arabaya tıkışmak gibi. Geceyi birkaç kadeh eşliğinde uğurlayacağımızı düşününce, dönüş planını önceden ayarlamak akıllıca olur.</p>
+          </div>
+          <div class="mini">
+            <span class="mini-ic">🛏️</span><h3>Konaklama</h3>
+            <p>Bu çevrede gerçekten otel yok — bizden duymuş olun, biz uzun uzun baktık. O yüzden dönüş planınızı erken yapın, son anda telaş yaşamayın.</p>
+          </div>
+          <div class="mini">
+            <span class="mini-ic">📞</span><h3>İletişim</h3>
+            <p><a href="tel:+905302435303">0530 243 53 03</a> — soru, sürpriz, lojistik, panik anı; ne olursa.</p>
+            <p class="mini-note">Bilen bilir; çiftimizde Arda telefonuyla daha yakın ilişkide. Öncelikle onu deneyin, dönüş alamazsanız kimi arayacağınızı biliyorsunuz. 🙃</p>
+          </div>
+          <div class="mini">
+            <span class="mini-ic">📅</span><h3>RSVP</h3>
+            <p>En geç <strong>13 Haziran 2026</strong>'ya kadar bize haber verin. Aşağıdaki formu doldurabilir, ya da WhatsApp / arama tercih ederseniz <a href="tel:+905302435303">0530 243 53 03</a>'ten yazıp arayabilirsiniz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMORIES — polaroid wall (photos only) -->
+    <section class="scene scene-tall scene-memories" id="s-memories" data-img="image/IMG_4050.jpg">
+      <div class="scene-inner wide">
+        <p class="eyebrow">ANILAR</p>
+        <h2 class="h2 script">Anılarımız</h2>
+        <p class="lede">Birlikte topladığımız küçük büyük anılardan bir seçki.</p>
+
+        <div class="polaroids">
+          <button type="button" class="polaroid p-tilt-a anchor" data-img="image/IMG_4050.jpg" aria-label="Anı 01">
+            <span class="p-frame"><img src="image/IMG_4050.jpg" alt="" loading="lazy" /></span>
+            <span class="p-tape" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-b anchor" data-img="image/IMG_1013.jpg" aria-label="Anı 02">
+            <span class="p-frame"><img src="image/IMG_1013.jpg" alt="" loading="lazy" /></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-c anchor" data-img="image/IMG_1608.jpg" aria-label="Anı 03">
+            <span class="p-frame"><img src="image/IMG_1608.jpg" alt="" loading="lazy" /></span>
+            <span class="p-tape p-tape-2" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-d anchor" data-img="image/WhatsApp Image 2026-05-18 at 21.32.07.jpeg" aria-label="Anı 04">
+            <span class="p-frame"><img src="image/WhatsApp Image 2026-05-18 at 21.32.07.jpeg" alt="" loading="lazy" /></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-e anchor" data-img="image/IMG_4042 2.jpg" aria-label="Anı 05">
+            <span class="p-frame"><img src="image/IMG_4042 2.jpg" alt="" loading="lazy" /></span>
+            <span class="p-tape" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-f anchor" data-img="image/IMG_3970.jpg" aria-label="Anı 06">
+            <span class="p-frame"><img src="image/IMG_3970.jpg" alt="" loading="lazy" /></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-a anchor" data-img="image/IMG_5023 2.jpg" aria-label="Anı 07">
+            <span class="p-frame"><img src="image/IMG_5023 2.jpg" alt="" loading="lazy" /></span>
+            <span class="p-tape p-tape-2" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-d anchor" data-img="image/WhatsApp Image 2026-05-18 at 21.35.48.jpeg" aria-label="Anı 08">
+            <span class="p-frame"><img src="image/WhatsApp Image 2026-05-18 at 21.35.48.jpeg" alt="" loading="lazy" /></span>
+          </button>
+          <button type="button" class="polaroid p-tilt-b anchor" data-img="image/WhatsApp Image 2026-05-18 at 21.47.26.jpeg" aria-label="Anı 09">
+            <span class="p-frame"><img src="image/WhatsApp Image 2026-05-18 at 21.47.26.jpeg" alt="" loading="lazy" /></span>
+            <span class="p-tape" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <p class="memo-note">Bir polaroidi büyütmek için üzerine tıkla.</p>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="scene" id="s-rsvp" data-img="image/IMG_1483.jpg">
+      <img class="m-only" src="image/IMG_1483.jpg" alt="" loading="lazy" />
+      <div class="scene-inner">
+        <p class="eyebrow">KATILIM DURUMU</p>
+        <h2 class="h2">Bize haber <em>verir misin?</em></h2>
+        <p class="lede small">Lütfen en geç <strong>13 Haziran 2026</strong>'ya kadar yanıt vermeyi unutmayın. Formu kullanabilir, ya da WhatsApp / arama tercih ederseniz <a href="https://wa.me/905302435303" target="_blank" rel="noopener">0530 243 53 03</a>'ten bize yazabilir / arayabilirsiniz.</p>
+
+        <form id="rsvpForm" class="rsvp-form" method="POST" action="https://formspree.io/f/your-form-id" novalidate>
+          <div class="field"><label for="r-name">Adın Soyadın</label>
+            <input id="r-name" name="name" type="text" required autocomplete="name" /></div>
+          <div class="field"><label for="r-email">E-posta</label>
+            <input id="r-email" name="email" type="email" required autocomplete="email" /></div>
+          <div class="field">
+            <span class="label-as-legend">Geliyor musun?</span>
+            <div class="radio-row">
+              <label class="radio"><input type="radio" name="attending" value="yes" required /><span>Evet, oradayım 🎉</span></label>
+              <label class="radio"><input type="radio" name="attending" value="no" /><span>Maalesef gelemiyorum 💌</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="r-count">Kaç kişi?</label>
+            <input id="r-count" name="guests" type="number" min="1" max="6" value="1" inputmode="numeric" />
+            <span class="field-hint">Çocuk veya eş(adayı) varsa onları da dahil et.</span>
+          </div>
+          <div class="field" id="guestNamesField" hidden>
+            <span class="label-as-legend">Diğer misafirlerin isimleri</span>
+            <div class="guest-inputs" id="guestInputs"></div>
+          </div>
+          <div class="field" id="afterPartyField">
+            <span class="label-as-legend">After Party?</span>
+            <div class="radio-row">
+              <label class="radio"><input type="radio" name="afterparty" value="yes" /><span>Tabii ki devam 🪩</span></label>
+              <label class="radio"><input type="radio" name="afterparty" value="no" /><span>Üzgünüm, sadece düğün</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="r-msg">Çifte mesajın (opsiyonel)</label>
+            <textarea id="r-msg" name="message" rows="4" placeholder="Sizin için bir notum var..."></textarea></div>
+          <button class="submit" type="submit">Gönder</button>
+          <p class="form-note" id="formNote" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer scene -->
+    <section class="scene scene-foot" id="s-foot" data-img="image/IMG_1483.jpg">
+      <div class="scene-inner foot-inner">
+        <p class="foot-script">Çağla &amp; Can Arda</p>
+        <p class="foot-date">27 · 06 · 2026</p>
+        <p class="foot-fine">Uzunya Plajı · Sarıyer / İstanbul · Aşkla yapıldı</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============== RIGHT (sticky media) ============== -->
+  <aside class="rail-media" aria-hidden="true">
+    <div class="rail-sticky">
+      <div class="ph-stage" id="phStage"></div>
+      <div class="rail-veil"></div>
+      <div class="rail-caption" id="railCaption">
+        <span class="cap-tag">Çağla &amp; Can Arda</span>
+        <span class="cap-sep"></span>
+        <span class="cap-title" id="capTitle">Tarihi Kaydedin</span>
+      </div>
+      <div class="rail-progress" id="railProgress" aria-hidden="true"></div>
+    </div>
+  </aside>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
