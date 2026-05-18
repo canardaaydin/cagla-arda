@@ -311,7 +311,7 @@ document.addEventListener("keydown", (e) => {
 
     const data = Object.fromEntries(new FormData(form).entries());
     const action = form.getAttribute("action") || "";
-    const isPlaceholder = action.includes("your-form-id");
+    const isPlaceholder = action.includes("PASTE-YOUR-DEPLOY-ID");
 
     try {
       const all = JSON.parse(localStorage.getItem("rsvp-replies") || "[]");
