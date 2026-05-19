@@ -281,9 +281,20 @@ document.addEventListener("keydown", (e) => {
   );
   syncGuestNames();
 
+  const submitBtn = form.querySelector(".submit");
+  const submitLabelOriginal = submitBtn ? submitBtn.innerHTML : "";
+  const setLoading = (on) => {
+    if (!submitBtn) return;
+    submitBtn.disabled = on;
+    submitBtn.innerHTML = on
+      ? '<span class="spinner" aria-hidden="true"></span>Gönderiliyor…'
+      : submitLabelOriginal;
+  };
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;
+    setLoading(true);
 
     const data = Object.fromEntries(new FormData(form).entries());
     const action = form.getAttribute("action") || "";
@@ -316,6 +327,7 @@ document.addEventListener("keydown", (e) => {
       window.location.href =
         `mailto:canardaaydin@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       showNote("Teşekkürler! E-posta uygulamanız açıldı, lütfen göndermeyi onaylayın. 💌", "ok");
+      setLoading(false);
       return;
     }
 
@@ -331,6 +343,8 @@ document.addEventListener("keydown", (e) => {
       } else throw new Error("Bad status " + res.status);
     } catch (err) {
       showNote("Gönderilemedi, lütfen tekrar dene veya 0530 243 53 03'ten yaz. 🙏", "err");
+    } finally {
+      setLoading(false);
     }
   });
 
