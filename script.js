@@ -235,34 +235,8 @@ document.addEventListener("keydown", (e) => {
   const form = $("#rsvpForm");
   if (!form) return;
   const note = $("#formNote");
-  const afterField = $("#afterPartyField");
   const checkEl = $("#r-check");
   if (checkEl) checkEl.value = "ok-" + new Date().getFullYear();
-
-  // If the guest says they can't make it to the wedding, hide the after-party
-  // question entirely (it doesn't make sense to ask).
-  const syncAfterParty = () => {
-    const v = form.querySelector('input[name="attending"]:checked')?.value;
-    if (!afterField) return;
-    if (v === "no") {
-      afterField.classList.add("is-disabled");
-      afterField.setAttribute("aria-hidden", "true");
-      afterField.querySelectorAll('input[name="afterparty"]').forEach((i) => {
-        i.checked = false;
-        i.disabled = true;
-      });
-    } else {
-      afterField.classList.remove("is-disabled");
-      afterField.removeAttribute("aria-hidden");
-      afterField.querySelectorAll('input[name="afterparty"]').forEach((i) => {
-        i.disabled = false;
-      });
-    }
-  };
-  form.querySelectorAll('input[name="attending"]').forEach((i) =>
-    i.addEventListener("change", syncAfterParty)
-  );
-  syncAfterParty();
 
   // When the guest count goes above 1, render a name input per extra guest.
   // Preserve typed values across re-renders.
@@ -336,9 +310,6 @@ document.addEventListener("keydown", (e) => {
         .map((k) => `  - ${data[k]}`);
       if (extraNames.length) {
         lines.push("Diğer misafirler:", ...extraNames);
-      }
-      if (data.attending !== "no") {
-        lines.push(`After party: ${data.afterparty || ""}`);
       }
       lines.push("", "Mesaj:", `${data.message || ""}`);
       const body = lines.join("\n");

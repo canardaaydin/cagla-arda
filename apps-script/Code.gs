@@ -21,7 +21,7 @@ function doPost(e) {
       sheet = ss.insertSheet(SHEET_NAME);
       sheet.appendRow([
         'Timestamp', 'Name', 'Email', 'Attending',
-        'Guests', 'Extra Names', 'After Party', 'Message'
+        'Guests', 'Extra Names', 'Message'
       ]);
       sheet.setFrozenRows(1);
     }
@@ -39,7 +39,6 @@ function doPost(e) {
       p.attending  || '',
       p.guests     || '',
       extra,
-      p.afterparty || '',
       p.message    || ''
     ]);
 
